@@ -4,47 +4,40 @@ var DefineClass = require('define-class'),
     TimerPlugin = DefineClass(PluginAbstract, {
 
         init: function() {
-            this.settings = [{
-                name: "exampleSetting1",
-                label: "Some example description",
-                type: "str",
-                defaultValue: ""
-            }];
             this.commands = {
-                example: {
+                starttimer: {
                     access: ['host', 'mod'],
-                    handler: this.example,
-                    description: 'An example command',
+                    handler: this.startTimer,
+                    description: 'Start a new timer. Expects the first argument to be the number of minutes',
                     params: /(\d+)/
+                },
+                stoptimer: {
+                    access: ['host', 'mod'],
+                    handler: this.stopTimer
+                },
+                addtime: {
+                    access: ['host', 'mod'],
+                    handler: this.addTime,
+                    params: /(\d+)/
+                },
+                timeleft: {
+                    access: ['host', 'mod'],
+                    handler: this.timeLeft
                 }
             };
             this._super();
         },
 
-        onStart: function() {
-            this.api.sendNotice([package.name, '(', package.version, ') has been registered.'].join(''));
+        startTimer: function(fromUser, noOfMinutes) {
         },
 
-        onTip: function(fromUser, toUser, amount, message) {
-            this.api.sendNotice(fromUser.name + ' tipped ' + toUser.name + ' ' + amount + ' tokens with the message: ' + message);
+        stopTimer: function() {
         },
 
-        onEnter: function(user) {
-            this.api.sendNotice('User ' + user.name + ' has entered the room.');
+        addTime: function(fromUser, noOfMinutes) {
         },
 
-        onLeave: function(user) {
-            this.api.sendNotice(user.name + ' has left the room.');
-        },
-
-        onMessage: function(user, message) {
-            this.api.sendNotice(user.name + ' sent the following message:  ' + message.message);
-        },
-
-        example: function(fromUser, param1) {
-            var backgroundColor = this.library.colors.light_purple,
-                message = 'Example command called by ' + fromUser.name;
-            this.api.sendNotice(message, '', backgroundColor);
+        timeLeft: function(fromUser) {
         }
     });
 

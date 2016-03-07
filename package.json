@@ -1,0 +1,14 @@
+{
+    "name": "cb-plugin-timer",
+    "version": "0.0.1",
+    "description": "Timer plugin to allow setting of timers.",
+    "author": {
+        "name": "falconzs",
+        "url": "https://github.com/falconzs"
+    },
+    "main": "src/index.js",
+    "peerDependencies": {
+        "cb-framework": ">=0.0.1",
+        "define-class": ">=0.0.2"
+    }
+}
